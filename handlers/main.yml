@@ -1,0 +1,8 @@
+---
+- name: restart ufw
+  command: ufw reload
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

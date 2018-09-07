@@ -1,0 +1,8 @@
+---
+ufw_rules_allow_ports: [22, 80, 443]
+ufw_banned_ip: []
+ufw_allowed_connections: []
+
+graylog_collector_outputs: []
+app_servers: []
+game_servers: []

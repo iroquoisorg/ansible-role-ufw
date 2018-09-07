@@ -1,0 +1,28 @@
+---
+- name: Pre-install actions.yml
+  include: pre.yml
+
+- name: Block specific IP addresses
+  ufw:
+    rule: deny
+    src: "{{ item }}"
+  with_items: "{{ ufw_banned_ip }}"
+
+- name: Set firewall allowed ports
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  with_items: "{{ ufw_rules_allow_ports }}"
+  notify: restart ufw
+
+- name: Set allowed connections with sources
+  ufw:
+    rule: allow
+    port: "{{ item.0.port }}"
+    src: "{{ item.1 }}"
+  with_subelements:
+    - "{{ ufw_allowed_connections }}"
+    - hosts
+
+- name: Post-install actions
+  include: post.yml

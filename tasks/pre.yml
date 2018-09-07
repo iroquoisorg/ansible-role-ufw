@@ -1,0 +1,22 @@
+---
+- name: Install UFW
+  apt:
+    pkg: ufw
+    state: present
+
+- name: Check UFW status
+  command: "ufw status verbose"
+  register: ufw_verbose_status
+  changed_when: false
+
+- name: Set default policy
+  command: ufw default deny
+  notify: restart ufw
+  when: "not ufw_verbose_status.stdout|search('Default: deny')"
+
+- name: Skip UFW logs from syslog
+  lineinfile:
+    path: /etc/rsyslog.d/20-ufw.conf
+    regexp: "^#?& stop"
+    line: "& stop"
+  notify: restart rsyslog
