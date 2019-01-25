@@ -1,6 +1,6 @@
 # ufw
 
-[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-ufw.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-memcached)
+[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-ufw.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-ufw)
 
 Ansible role for ufw
 
@@ -23,3 +23,7 @@ app_servers: []
 game_servers: []
 
 ```
+
+# Development
+
+Please check [development guide](DEVELOPMENT.md) for details about developing and testing this role.
